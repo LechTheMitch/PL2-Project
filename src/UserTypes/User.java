@@ -1,3 +1,5 @@
+package UserTypes;
+
 public class User {
     private int id;
     private String password;
