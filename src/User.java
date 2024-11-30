@@ -3,12 +3,18 @@ public class User {
     private String password;
     private String name;
     private String phoneNumber;
-    public boolean canTakeExams;
+    private boolean canTakeExams;
 
     public User(int id, String password){
         //TODO
     }
 
+    public boolean getCanTakeExams() {
+        return canTakeExams;
+    }
+    public void setCanTakeExams(boolean canTakeExams) {
+        this.canTakeExams = canTakeExams;
+    }
     public void setId(int id){
         this.id = id;
     }
