@@ -5,6 +5,7 @@ public abstract class User {
     private String password;
     private String name;
     private String phoneNumber;
+    private String role;
     private boolean canTakeExams;
 
     public User(){
@@ -17,6 +18,14 @@ public abstract class User {
     public void setCanTakeExams(boolean canTakeExams) {
         this.canTakeExams = canTakeExams;
     }
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
 
     public void setId(int id) {
         this.id = id;

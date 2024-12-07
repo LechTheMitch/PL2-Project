@@ -1,4 +1,4 @@
 package UserTypes;
 
-final public class Admin {
+final public class Admin extends Lecturer{
 }
