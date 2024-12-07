@@ -1,13 +1,13 @@
 package UserTypes;
 
-public class User {
+public abstract class User {
     private int id;
     private String password;
     private String name;
     private String phoneNumber;
     private boolean canTakeExams;
 
-    public User(int id, String password){
+    public User(){
         //TODO
     }
 
@@ -17,12 +17,15 @@ public class User {
     public void setCanTakeExams(boolean canTakeExams) {
         this.canTakeExams = canTakeExams;
     }
-    public void setId(int id){
+
+    public void setId(int id) {
         this.id = id;
     }
+
     public int getId(){
-        return this.id;
+        return id;
     }
+    public abstract int generateId();
     public void setPassword(String password){
         this.password = password;
     }
