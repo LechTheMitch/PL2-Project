@@ -21,16 +21,12 @@ public abstract class User {
     public String getRole() {
         return role;
     }
-
     public void setRole(String role) {
         this.role = role;
     }
-
-
     public void setId(int id) {
         this.id = id;
     }
-
     public int getId(){
         return id;
     }
