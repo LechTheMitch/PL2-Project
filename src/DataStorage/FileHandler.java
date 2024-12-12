@@ -12,7 +12,11 @@ import java.util.Scanner;
 public class FileHandler {
     public static void createFile(File f) {
         try {
-            f.createNewFile();
+            if (f.createNewFile()) {
+                System.out.println("File created: " + f.getName());
+            } else {
+                System.out.println("File already exists");
+            }
         } catch (IOException e) {
             System.out.println("Error creating file " + f.getName());
         }
@@ -26,7 +30,7 @@ public class FileHandler {
     }
 
     public String readFromFile(File f) throws FileNotFoundException {
-        // Read data from file
+        //TODO
         Scanner scanner = new Scanner(f);
         return "";
     }
