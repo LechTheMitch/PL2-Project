@@ -1,13 +1,13 @@
 package DataStorage;
 
+import UserTypes.Student;
 import UserTypes.User;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.regex.Pattern;
 
 public class FileHandler {
     public static void createFile(File f) {
@@ -37,12 +37,10 @@ public class FileHandler {
             System.out.println("Error writing to file " + f.getName() + " NOT FOUND" + ex.getMessage());
         }
     }
-    public static void readId(File f) {
+    public static void readSavedUsersFromFile(File f, ArrayList<Student> users) {
         try (Scanner scanner = new Scanner(f)) {
             while (scanner.hasNextLine()) {
-                scanner.useDelimiter("[a-zA-Z\\n]+");
-                String data = scanner.next();
-                System.out.println(data);
+                users.add(new Student(scanner.next(), scanner.next(), Integer.parseInt(scanner.next()), scanner.next()));
             }
         } catch (FileNotFoundException e) {
             System.out.println("File not found");

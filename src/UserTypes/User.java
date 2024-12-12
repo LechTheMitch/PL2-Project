@@ -1,5 +1,7 @@
 package UserTypes;
 
+import java.util.ArrayList;
+
 public abstract class User {
     private int id;
     private String password;
@@ -48,6 +50,15 @@ public abstract class User {
     }
     public String getPhoneNumber(){
         return this.phoneNumber;
+    }
+    public static int getLargestId(ArrayList<Student> users){
+        int largestId = 0;
+        for (User user : users) {
+            if (user.getId() > largestId) {
+                largestId = user.getId();
+            }
+        }
+        return Math.max(largestId, 0);
     }
 
 }

@@ -1,8 +1,22 @@
 package UserTypes;
 
+import java.util.ArrayList;
+
 public class Student extends User {
-    private static int idGenerator;
+    public static ArrayList<Student> students = new ArrayList<>();
+    public static int idGenerator;
+    static {
+        idGenerator = getLargestId(students);
+    }
     public Student() {
+        setCanTakeExams(true);
+    }
+
+    public Student(String name, String pass, int id, String role) {
+        setName(name);
+        setPassword(pass);
+        setId(id);
+        setRole(role);
         setCanTakeExams(true);
     }
 
