@@ -9,6 +9,7 @@ public abstract class User {
     private String phoneNumber;
     private String role;
     private boolean canTakeExams;
+    private static final int currentSchoolYear = 2023 * 10000;
 
     public User(){
         //TODO
@@ -58,7 +59,7 @@ public abstract class User {
                 largestId = user.getId();
             }
         }
-        return Math.max(largestId, 0);
+        return Math.max(largestId - currentSchoolYear, 0);
     }
 
 }
