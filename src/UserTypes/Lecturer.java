@@ -1,5 +1,9 @@
 package UserTypes;
 
+import DataStorage.FileHandler;
+import ExamModule.Question;
+
+import java.io.File;
 import java.util.ArrayList;
 
 public class Lecturer extends User{
@@ -17,4 +21,4 @@ public class Lecturer extends User{
     public int generateId() {
         return 0;
     }
-}
+    }

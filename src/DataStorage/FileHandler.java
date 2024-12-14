@@ -22,11 +22,11 @@ public class FileHandler {
             System.out.println("Error creating file " + f.getName());
         }
     }
-    public static void writeToFile(File f, String data){
-        try (FileWriter writer = new FileWriter(f)) {
-            writer.write(data);
-        } catch (Exception e) {
-            System.out.println("Error writing to file " + f.getName() + " NOT FOUND" + e.getMessage());
+    public static void writeNewQuestion(File f, Question newQuestion) {
+        try (FileWriter writer = new FileWriter(f, false)) {
+            writer.write(newQuestion.getQuestion() + " " + newQuestion.getAnswer() + " " + newQuestion.getCorrectAnswer() + "\n");
+        } catch (IOException ex) {
+            System.out.println("Error writing to file " + f.getName() + " NOT FOUND" + ex.getMessage());
         }
     }
 
