@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Student extends User {
     public static ArrayList<Student> students = new ArrayList<>();
-    public static int idGenerator;
+    private static int idGenerator;
     public final static String studentInformation =  "src/DataStorage/StudentInformation.txt";
 
     public Student() {

@@ -1,5 +1,6 @@
 package DataStorage;
 
+import ExamModule.Question;
 import UserTypes.Student;
 import UserTypes.User;
 import java.io.File;
@@ -29,10 +30,16 @@ public class FileHandler {
         }
     }
 
-    public String readFromFile(File f) throws FileNotFoundException {
-        //TODO
-        Scanner scanner = new Scanner(f);
-        return "";
+    public void readQuestionsFromFile(File f, ArrayList<Question> questions) throws FileNotFoundException {
+        try (Scanner scanner = new Scanner(f)) {
+            while (scanner.hasNextLine()) {
+                questions.add(new Question(scanner.next(), scanner.next().charAt(0), scanner.next().charAt(0)));
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found");
+        } catch (Exception e) {
+            System.out.println(" ");
+        }
     }
     public static void writeNewUser(File f, User newUser) {
         try (FileWriter writer = new FileWriter(f, true)) {
