@@ -56,5 +56,19 @@ public class Exam{
         questionArrayList.set(questionIndex, q);
         setQuestionArray(f, questionArrayList);
     }
-
+    protected final ArrayList<Integer> checkAnswers(ArrayList<Question> questions, ArrayList<Integer> wrongQuestionIndexes) {
+        int correct = 0;
+        for (int i = 0; i < questions.size(); i++) {
+            if (questions.get(i).getCorrectAnswer() == questions.get(i).getAnswer()) {
+                correct++;
+            }
+            else
+                wrongQuestionIndexes.add(i);
+        }
+        System.out.println("You got " + correct + " out of " + questions.size() + " questions correct");
+        return wrongQuestionIndexes;
+    }
+    protected final String calculateMarks(ArrayList<Question> questions, Student student, ArrayList<Integer> wrongQuestionIndexes) {
+        return "You got " + wrongQuestionIndexes.size() + " out of " + questions.size() + " questions correct";
+    }
 }
