@@ -19,7 +19,6 @@ public class Exam{
     protected final static String dcQuestions = "src/DataStorage/DCQuestions.txt";
 
     public Exam() {
-        //TODO
     }
     public void takeExam(Student student) {
         if (student.getCanTakeExams()) {

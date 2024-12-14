@@ -10,7 +10,6 @@ public abstract class User {
     private String role;
     private boolean canTakeExams;
     private static String[] subjects = new String[]{"Data Communications", "Data Structures", "Database", "logic Design", "Programming Languages 2"};
-    private static final int currentSchoolYear = 2023 * 10000;
 
     public User(){
         //TODO
@@ -66,7 +65,15 @@ public abstract class User {
                 largestId = user.getId();
             }
         }
-        return Math.max(largestId - currentSchoolYear, 0);
+        return Math.max(largestId, 0);
+    }
+    public static User getUserById(int id, ArrayList<? extends User> users){
+        for (User user : users) {
+            if (user.getId() == id) {
+                return user;
+            }
+        }
+        return null;
     }
 
 }
