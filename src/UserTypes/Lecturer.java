@@ -5,11 +5,10 @@ import DataStorage.FileHandler;
 import java.io.File;
 import java.util.ArrayList;
 
-public class Lecturer extends User{
+public final class Lecturer extends User{
     public static ArrayList<Lecturer> lecturers = new ArrayList<>();
     private static int idGenerator;
     public final static String lecturerInformation =  "src/DataStorage/LecturerInformation.txt";
-    private static final int idParser = 100;
 
     public Lecturer() {
         FileHandler.createFile(new File(lecturerInformation));

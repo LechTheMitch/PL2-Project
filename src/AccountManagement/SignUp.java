@@ -15,8 +15,15 @@ public class SignUp{
 //        modifyUser.write(student.generateId() + " " + "password" + " " + "Student" + "\n");
 //        modifyUser.close();
     }
-    private static void writeUser(User user) throws IOException {
-        FileHandler.writeNewUser(new File("src/DataStorage/StudentInformation.txt"), user);
+    private static <T extends User> void writeUser(T user) throws IOException {
+        if (user.getClass() == Student.class)
+            FileHandler.writeNewUser(new File(Student.studentInformation), user);
+        else if (user.getClass() == Lecturer.class)
+            FileHandler.writeNewUser(new File(Lecturer.lecturerInformation), user);
+        else if (user.getClass() == Admin.class)
+            FileHandler.writeNewUser(new File(Admin.adminInformation), user);
+        else
+            throw new IllegalArgumentException("Invalid User");
     }
     public static void addUser(String name, String password, String role) throws IOException {
         UserOperation userAdd = (User user) -> {

@@ -35,7 +35,7 @@ public class FileHandler {
     public void readQuestionsFromFile(File f, ArrayList<Question> questions) {
         try (Scanner scanner = new Scanner(f)) {
             while (scanner.hasNextLine()) {
-                questions.add(new Question(scanner.next(), scanner.next().charAt(0), scanner.next().charAt(0)));
+                questions.add(new Question(scanner.next(), scanner.next().charAt(0)));
             }
         } catch (FileNotFoundException e) {
             System.out.println("File not found");
@@ -43,7 +43,7 @@ public class FileHandler {
             System.out.println(" ");
         }
     }
-    public static void writeNewUser(File f, User newUser) {
+    public static <T extends User> void writeNewUser(File f, T newUser) {
         try (FileWriter writer = new FileWriter(f, true)) {
             writer.write(newUser.getName() + " " + newUser.getPassword() + " " + newUser.getId() + " " + newUser.getRole() + "\n");
         } catch (IOException ex) {
@@ -59,8 +59,7 @@ public class FileHandler {
                 } else if (userType == Lecturer.class) {
                     users.add(userType.cast(new Lecturer(scanner.next(), scanner.next(), Integer.parseInt(scanner.next()), scanner.next())));
                 } else if (userType == Admin.class) {
-                    users.add(userType.cast(new Admin(//TODO
-                    )));
+                    users.add(userType.cast(new Admin(scanner.next(), scanner.next(), Integer.parseInt(scanner.next()), scanner.next())));
                 }
             }
         } catch (FileNotFoundException e) {

@@ -8,9 +8,8 @@ public class Question {
     private char correctAnswer;
     public ArrayList<Question> questions = new ArrayList<>();
 
-    public Question(String question, char answer, char correctAnswer) {
+    public Question(String question, char correctAnswer) {
         this.question = question;
-        this.answer = answer;
         this.correctAnswer = correctAnswer;
     }
 

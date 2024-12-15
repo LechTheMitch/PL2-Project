@@ -8,7 +8,7 @@ public abstract class User {
     private String name;
     private String phoneNumber;
     private String role;
-    private boolean canTakeExams;
+    final int idParser = 1000;
     private static String[] subjects = new String[]{"Data Communications", "Data Structures", "Database", "logic Design", "Programming Languages 2"};
 
     public User(){
@@ -21,12 +21,6 @@ public abstract class User {
         setRole(role);
     }
 
-    public boolean getCanTakeExams() {
-        return canTakeExams;
-    }
-    public void setCanTakeExams(boolean canTakeExams) {
-        this.canTakeExams = canTakeExams;
-    }
     public String getRole() {
         return role;
     }
