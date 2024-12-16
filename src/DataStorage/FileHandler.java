@@ -25,14 +25,14 @@ public class FileHandler {
         }
     }
     public static void writeNewQuestion(File f, Question newQuestion) {
-        try (FileWriter writer = new FileWriter(f, false)) {
+        try (FileWriter writer = new FileWriter(f, true)) {
             writer.write(newQuestion.getQuestion() + " " + newQuestion.getAnswer() + " " + newQuestion.getCorrectAnswer() + "\n");
         } catch (IOException ex) {
             System.out.println("Error writing to file " + f.getName() + " NOT FOUND" + ex.getMessage());
         }
     }
 
-    public void readQuestionsFromFile(File f, ArrayList<Question> questions) {
+    public static void readQuestionsFromFile(File f, ArrayList<Question> questions) {
         try (Scanner scanner = new Scanner(f)) {
             while (scanner.hasNextLine()) {
                 questions.add(new Question(scanner.next(), scanner.next().charAt(0)));

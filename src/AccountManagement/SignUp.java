@@ -17,11 +17,11 @@ public class SignUp{
     }
     private static <T extends User> void writeUser(T user) throws IOException {
         if (user.getClass() == Student.class)
-            FileHandler.writeNewUser(new File(Student.studentInformation), user);
+            FileHandler.writeNewUser(Student.studentInformation, user);
         else if (user.getClass() == Lecturer.class)
-            FileHandler.writeNewUser(new File(Lecturer.lecturerInformation), user);
+            FileHandler.writeNewUser(Lecturer.lecturerInformation, user);
         else if (user.getClass() == Admin.class)
-            FileHandler.writeNewUser(new File(Admin.adminInformation), user);
+            FileHandler.writeNewUser(Admin.adminInformation, user);
         else
             throw new IllegalArgumentException("Invalid User");
     }

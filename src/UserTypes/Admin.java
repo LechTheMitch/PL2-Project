@@ -10,10 +10,10 @@ import static UserTypes.Student.students;
 final public class Admin extends User {
     public static ArrayList<Admin> admins = new ArrayList<>();
     private static int idGenerator;
-    public final static String adminInformation =  "src/DataStorage/AdminInformation.txt";
+    public final static File adminInformation =  new File("src/DataStorage/AdminInformation.txt");
 
     public Admin() {
-        FileHandler.createFile(new File(adminInformation));
+        FileHandler.createFile(adminInformation);
         idGenerator = getLargestId(admins)%idParser;
     }
     public Admin(String name, String pass, int id, String role) {

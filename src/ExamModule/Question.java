@@ -8,6 +8,7 @@ public class Question {
     private char correctAnswer;
     public ArrayList<Question> questions = new ArrayList<>();
 
+    //TODO Maybe we could define if student has taken the exam before here using Hashsets
     public Question(String question, char correctAnswer) {
         this.question = question;
         this.correctAnswer = correctAnswer;

@@ -1,12 +1,14 @@
 package UserTypes;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public final class Student extends User {
     public static ArrayList<Student> students = new ArrayList<>();
     private static int idGenerator;
-    public final static String studentInformation =  "src/DataStorage/StudentInformation.txt";
-    protected ArrayList<String> takenExams = new ArrayList<>();
+    private final static String currentYear = "2023";
+    public final static File studentInformation =  new File("src/DataStorage/StudentInformation.txt");
+    public ArrayList<String> takenExams = new ArrayList<>();
 
     public Student() {
         idGenerator = getLargestId(students) % idParser;
@@ -18,7 +20,7 @@ public final class Student extends User {
 
     @Override
     public int generateId() {
-        return Integer.parseInt("20230"+ String.format("%03d", ++idGenerator));
+        return Integer.parseInt(currentYear+ String.format("%04d", ++idGenerator));
     }
 
 
