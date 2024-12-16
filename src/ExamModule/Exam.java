@@ -32,23 +32,12 @@ public class Exam{
         //This Scanner will be removed
         Scanner questionAnswer = new Scanner(System.in);
         for (Question question : questions){
-            System.out.println(question.getQuestion());
-            System.out.println("Enter your answer: ");
+            System.out.println(question.getQuestion().replace("ㄧ", " "));
+            System.out.print("Enter your answer: ");
             question.setAnswer(Character.toUpperCase(questionAnswer.next().charAt(0)));
         }
         calculateMarks(questions, student, new ArrayList<>());
         student.takenExams.add(String.valueOf(questions));
-//        if (questions == pl2) {
-//            student.takenExams.add(String.valueOf(pl2));
-//        } else if (questions == ds) {
-//            student.takenExams.add(String.valueOf(ds));
-//        } else if (questions == db) {
-//            student.takenExams.add(String.valueOf(db));
-//        } else if (questions == logic) {
-//            student.takenExams.add(String.valueOf(logic));
-//        } else if (questions == dc) {
-//            student.takenExams.add(String.valueOf(dc));
-//        }
     }
     public static void setQuestionArray(File f, ArrayList<Question> questionArrayList){
         for (Question q: questionArrayList) {
@@ -56,14 +45,13 @@ public class Exam{
         }
     }
     public static void createQuestions(File f, ArrayList<Question> questionArrayList, String question, char correctAnswer) {
-        Question newQuestion = new Question(question,correctAnswer);
+        Question newQuestion = new Question(question.replace(' ','ㄧ'),correctAnswer);
         if (questionArrayList.size()>=5)
             //Cannot Create More than 5 Questions
             throw new ArrayIndexOutOfBoundsException ("Cannot Create More than 5 Questions");
 
         else {
             FileHandler.writeNewQuestion(f, newQuestion);
-            questionArrayList.add(newQuestion);
         }
     }
     public static void deleteQuestion(File f, ArrayList<Question> questionArrayList, int questionIndex) {
@@ -73,7 +61,7 @@ public class Exam{
     }
     public static void modifyQuestion(File f, ArrayList<Question> questionArrayList, int questionIndex, String newQuestion, char newCorrectAnswer) {
         Question q = questionArrayList.get(questionIndex);
-        q.setQuestion(newQuestion);
+        q.setQuestion(newQuestion.replace(' ','ㄧ'));
         q.setCorrectAnswer(newCorrectAnswer);
         questionArrayList.set(questionIndex, q);
         setQuestionArray(f, questionArrayList);
@@ -93,7 +81,7 @@ public class Exam{
     }
     public static void showWrongAnswers(ArrayList<Question> questions, ArrayList<Integer> wrongQuestionIndexes) {
         for (int i : wrongQuestionIndexes) {
-            System.out.println(questions.get(i).getQuestion() + " Correct Answer: "+questions.get(i).getCorrectAnswer());
+            System.out.println(questions.get(i).getQuestion().replace('ㄧ',' ') + " Correct Answer: "+questions.get(i).getCorrectAnswer());
         }
     }
     public static String calculateMarks(ArrayList<Question> questions, Student student, ArrayList<Integer> wrongQuestionIndexes) {

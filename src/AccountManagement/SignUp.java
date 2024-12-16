@@ -1,5 +1,4 @@
 package AccountManagement;
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import DataStorage.FileHandler;
@@ -7,7 +6,6 @@ import DataStorage.FileHandler;
 import UserTypes.*;
 
 public class SignUp{
-    private static ArrayList<User> sysUser = new ArrayList<>();
     public SignUp() throws IOException {
         //TODO
 //        userInformation.createNewFile();

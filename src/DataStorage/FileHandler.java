@@ -26,12 +26,11 @@ public class FileHandler {
     }
     public static void writeNewQuestion(File f, Question newQuestion) {
         try (FileWriter writer = new FileWriter(f, true)) {
-            writer.write(newQuestion.getQuestion() + " " + newQuestion.getAnswer() + " " + newQuestion.getCorrectAnswer() + "\n");
+            writer.write(newQuestion.getQuestion() + " " + newQuestion.getCorrectAnswer() + "\n");
         } catch (IOException ex) {
             System.out.println("Error writing to file " + f.getName() + " NOT FOUND" + ex.getMessage());
         }
     }
-
     public static void readQuestionsFromFile(File f, ArrayList<Question> questions) {
         try (Scanner scanner = new Scanner(f)) {
             while (scanner.hasNextLine()) {
@@ -50,7 +49,6 @@ public class FileHandler {
             System.out.println("Error writing to file " + f.getName() + " NOT FOUND" + ex.getMessage());
         }
     }
-
     public static <T extends User> void readSavedUsersFromFile(File f, ArrayList<T> users, Class<T> userType) {
         try (Scanner scanner = new Scanner(f)) {
             while (scanner.hasNextLine()) {

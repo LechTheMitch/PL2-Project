@@ -6,7 +6,6 @@ public abstract class User {
     private int id;
     private String password;
     private String name;
-    private String phoneNumber;
     private String role;
     final int idParser = 1000;
     private static String[] subjects = new String[]{"Data Communications", "Data Structures", "Database", "logic Design", "Programming Languages 2"};
@@ -45,12 +44,6 @@ public abstract class User {
     }
     public String getName() {
         return this.name;
-    }
-    public void setPhoneNumber(String phoneNumber){
-        this.phoneNumber = phoneNumber;
-    }
-    public String getPhoneNumber(){
-        return this.phoneNumber;
     }
     public int getLargestId(ArrayList<? extends User> users){
         int largestId = 0;
