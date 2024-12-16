@@ -8,7 +8,7 @@ public abstract class User {
     private String name;
     private String role;
     final int idParser = 1000;
-    private static String[] subjects = new String[]{"Data Communications", "Data Structures", "Database", "logic Design", "Programming Languages 2"};
+    public static final String[] subjects = new String[]{"Data Communications", "Data Structures", "Database", "Logic Design", "Programming Languages 2"};
 
     public User(){
         //TODO

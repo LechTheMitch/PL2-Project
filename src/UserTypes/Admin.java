@@ -52,4 +52,11 @@ final public class Admin extends User {
             }
         }
     }
+    public void changeCredentials(String password){
+        this.setPassword(password);
+        FileHandler.recreateFile(adminInformation);
+        for (Admin admin : admins) {
+            FileHandler.writeNewUser(adminInformation, admin);
+        }
+    }
 }

@@ -21,28 +21,33 @@ public class Exam{
 
     public Exam() {
     }
-    public Exam(File f, ArrayList<Question> questionArrayList, Student student) {
-        FileHandler.readQuestionsFromFile(f, questionArrayList);
-        takeExam(student, questionArrayList);
-        showWrongAnswers(questionArrayList, checkAnswers(questionArrayList));
+    public Exam(File f, ArrayList<Question> questionArrayList, Student student, String examName) {
+        if (student.takenExams.contains(examName)) {
+            System.out.println("You have already taken this exam");
+        }else {
+            FileHandler.readQuestionsFromFile(f, questionArrayList);
+            takeExam(student, questionArrayList, examName);
+            showWrongAnswers(questionArrayList, checkAnswers(questionArrayList));
+        }
     }
 
-    //TODO Exam Taken Before
-    public static void takeExam(Student student, ArrayList<Question> questions) {
+    public static void takeExam(Student student, ArrayList<Question> questions, String examName) {
         //This Scanner will be removed
-        Scanner questionAnswer = new Scanner(System.in);
-        for (Question question : questions){
-            System.out.println(question.getQuestion().replace("ㄧ", " "));
-            System.out.print("Enter your answer: ");
-            question.setAnswer(Character.toUpperCase(questionAnswer.next().charAt(0)));
-        }
-        calculateMarks(questions, student, new ArrayList<>());
-        student.takenExams.add(String.valueOf(questions));
+            Scanner questionAnswer = new Scanner(System.in);
+            for (Question question : questions){
+                System.out.println(question.getQuestion().replace("ㄧ", " "));
+                System.out.print("Enter your answer: ");
+                question.setAnswer(Character.toUpperCase(questionAnswer.next().charAt(0)));
+            }
+            calculateMarks(questions, student, new ArrayList<>());
+            student.takenExams.add(examName);
+
     }
     public static void setQuestionArray(File f, ArrayList<Question> questionArrayList){
-        for (Question q: questionArrayList) {
-            FileHandler.writeNewQuestion(f, q);
-        }
+       FileHandler.recreateFile(f);
+       for (Question q: questionArrayList) {
+         FileHandler.writeNewQuestion(f, q);
+       }
     }
     public static void createQuestions(File f, ArrayList<Question> questionArrayList, String question, char correctAnswer) {
         Question newQuestion = new Question(question.replace(' ','ㄧ'),correctAnswer);

@@ -66,5 +66,12 @@ public class FileHandler {
             System.out.println(" ");
         }
     }
-
+    public static void recreateFile(File f) {
+        if (f.exists()) {
+            if (f.delete()) {
+                createFile(f);
+            }
+            else throw new IllegalArgumentException("File could not be deleted");
+        }
+    }
 }
