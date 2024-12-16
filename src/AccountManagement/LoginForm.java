@@ -78,11 +78,7 @@ public class LoginForm extends JFrame {
                 String role = studentRadioButton.isSelected() ? "Student" :
                         lecturerRadioButton.isSelected() ? "Lecturer" : "Admin";
 
-                try {
-                    SignUp.addUser(name, password, role);
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
-                }
+                Login.checkIfUserExists(Integer.parseInt(name));
                 dispose();
             }
         });
