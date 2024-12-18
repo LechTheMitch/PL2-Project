@@ -4,7 +4,11 @@
  */
 package UserTypes;
 
+import DataStorage.FileHandler;
 import ExamModule.Exam;
+import ExamModule.Question;
+import java.io.File;
+import java.util.ArrayList;
 
 /**
  *
@@ -19,6 +23,12 @@ public class LecturerManagement extends javax.swing.JFrame {
         initComponents();
     }
     char correctAnswer;
+    static int subjectIndex = 0;
+    static ArrayList<Student> students = Student.students;
+    //TODO
+    String question = "";
+    ArrayList<Question> questionArrayList = Exam.pl2;
+    File questionsFile = Exam.pl2Questions;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -41,7 +51,7 @@ public class LecturerManagement extends javax.swing.JFrame {
         jRadioButton3 = new javax.swing.JRadioButton();
         jRadioButton4 = new javax.swing.JRadioButton();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        questionInput = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         questionType = new javax.swing.JComboBox<>();
@@ -89,12 +99,12 @@ public class LecturerManagement extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setText("Correct Answer For Question");
+        jLabel4.setText("Select Question Type");
 
-        jTextField1.setText("questionInput");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        questionInput.setText("p");
+        questionInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                questionInputActionPerformed(evt);
             }
         });
 
@@ -105,7 +115,7 @@ public class LecturerManagement extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setText("Select Question Type");
+        jLabel5.setText("Correct Answer For Question");
 
         questionType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         questionType.addActionListener(new java.awt.event.ActionListener() {
@@ -121,35 +131,33 @@ public class LecturerManagement extends javax.swing.JFrame {
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
+                        .addGap(80, 80, 80)
                         .addComponent(questionType, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 3, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel5))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton1))
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel5))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(jPanel5Layout.createSequentialGroup()
-                                        .addComponent(jRadioButton1)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jRadioButton2)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jRadioButton3)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jRadioButton4))
-                                    .addComponent(jTextField1))))))
-                .addContainerGap(40, Short.MAX_VALUE))
+                                .addComponent(jRadioButton1)
+                                .addGap(18, 18, 18)
+                                .addComponent(jRadioButton2)
+                                .addGap(18, 18, 18)
+                                .addComponent(jRadioButton3)
+                                .addGap(18, 18, 18)
+                                .addComponent(jRadioButton4))
+                            .addComponent(questionInput))))
+                .addContainerGap(84, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,7 +165,7 @@ public class LecturerManagement extends javax.swing.JFrame {
                 .addGap(36, 36, 36)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(questionInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jRadioButton1)
@@ -228,8 +236,7 @@ public class LecturerManagement extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(104, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 554, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Grades", jPanel2);
@@ -269,12 +276,12 @@ public class LecturerManagement extends javax.swing.JFrame {
     }//GEN-LAST:event_questionTypeActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Exam.createQuestions(f, questionArrayList, question, correctAnswer);
+       Exam.createQuestions(questionsFile, questionArrayList, question, correctAnswer);
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void questionInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_questionInputActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_questionInputActionPerformed
 
     private void jRadioButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton4ActionPerformed
         correctAnswer = 'D';
@@ -326,6 +333,20 @@ public class LecturerManagement extends javax.swing.JFrame {
             }
         });
     }
+    private static void listGrades(ArrayList<Student> students){
+        Object[] rowData = new Object[3];
+        for(Student student: students){
+            rowData[0] = student.getName();
+            rowData[1] = student.getId();
+            rowData[3] = student.getGrades(subjectIndex);
+        }
+
+    }
+    private static void loadUsers(){
+        FileHandler.readSavedUsersFromFile(Student.studentInformation, Student.students, Student.class);
+        FileHandler.readSavedUsersFromFile(Admin.adminInformation, Admin.admins, Admin.class);
+        FileHandler.readSavedUsersFromFile(Lecturer.lecturerInformation, Lecturer.lecturers, Lecturer.class);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup correctAnswerButtonGroup;
@@ -347,7 +368,7 @@ public class LecturerManagement extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane3;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField questionInput;
     private javax.swing.JComboBox<String> questionType;
     // End of variables declaration//GEN-END:variables
 }
