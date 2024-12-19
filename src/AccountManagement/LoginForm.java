@@ -1,5 +1,10 @@
 package AccountManagement;
 
+import Mostafa.regester_Gui;
+import Mostafa.student_Gui;
+import UserTypes.Admin_GUI;
+import UserTypes.LecturerForm;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -78,7 +83,31 @@ public class LoginForm extends JFrame {
                 String role = studentRadioButton.isSelected() ? "Student" :
                         lecturerRadioButton.isSelected() ? "Lecturer" : "Admin";
 
-                Login.checkIfUserExists(Integer.parseInt(name));
+                if (studentRadioButton.isSelected()) {
+                    try {
+                        SignUp.addUser(nameField.getText(), passwordField.getText(), "Student");
+                        new student_Gui().setVisible(true);
+                        LoginForm.this.setVisible(false);
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                } else if (lecturerRadioButton.isSelected()) {
+                    try {
+                        SignUp.addUser(nameField.getText(), passwordField.getText(), "Lecturer");
+                        new LecturerForm().setVisible(true);
+                        LoginForm.this.setVisible(false);
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                } else if (adminRadioButton.isSelected()) {
+                    try {
+                        SignUp.addUser(nameField.getText(), passwordField.getText(), "Admin");
+                        new Admin_GUI(LoginForm.this,true).setVisible(true);
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+
+                }
                 dispose();
             }
         });
