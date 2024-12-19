@@ -74,4 +74,9 @@ public class FileHandler {
             else throw new IllegalArgumentException("File could not be deleted");
         }
     }
+    public static void loadUsers(){
+        FileHandler.readSavedUsersFromFile(Student.studentInformation, Student.students, Student.class);
+        FileHandler.readSavedUsersFromFile(Admin.adminInformation, Admin.admins, Admin.class);
+        FileHandler.readSavedUsersFromFile(Lecturer.lecturerInformation, Lecturer.lecturers, Lecturer.class);
+    }
 }

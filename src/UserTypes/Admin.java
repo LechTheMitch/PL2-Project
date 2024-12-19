@@ -1,6 +1,8 @@
 package UserTypes;
 
 import DataStorage.FileHandler;
+import ExamModule.Question;
+
 import java.io.File;
 import java.util.ArrayList;
 
@@ -39,16 +41,19 @@ final public class Admin extends User {
         for (Admin admin : admins) {
             if (admin.getId() == id){
                 admins.remove(admin);
+                setUserFiles(adminInformation, admins);
             }
         }
         for (Lecturer lecturer : lecturers) {
             if (lecturer.getId() == id){
                 lecturers.remove(lecturer);
+                setUserFiles(Lecturer.lecturerInformation, lecturers);
             }
         }
         for (Student student : students) {
             if (student.getId() == id){
                 students.remove(student);
+                setUserFiles(Student.studentInformation, students);
             }
         }
     }
@@ -57,6 +62,12 @@ final public class Admin extends User {
         FileHandler.recreateFile(adminInformation);
         for (Admin admin : admins) {
             FileHandler.writeNewUser(adminInformation, admin);
+        }
+    }
+    public static void setUserFiles(File f, ArrayList<? extends User> userArrayList){
+        FileHandler.recreateFile(f);
+        for (User u: userArrayList) {
+            FileHandler.writeNewUser(f, u);
         }
     }
 }

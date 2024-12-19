@@ -50,7 +50,7 @@ public class Exam{
        }
     }
     public static void createQuestions(File f, ArrayList<Question> questionArrayList, String question, char correctAnswer) {
-        Question newQuestion = new Question(question.replace(' ','ㄧ'),correctAnswer);
+        Question newQuestion = new Question(question.replace(' ','ㄧ'),Character.toUpperCase(correctAnswer));
         if (questionArrayList.size()>=5)
             //Cannot Create More than 5 Questions
             throw new ArrayIndexOutOfBoundsException ("Cannot Create More than 5 Questions");
