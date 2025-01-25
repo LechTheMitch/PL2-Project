@@ -1,12 +1,7 @@
 import DataStorage.FileHandler;
-import UserTypes.*;
 
-import javax.swing.*;
-import java.io.IOException;
-
-
-public class Main extends JFrame {
-    public static void main(String[] args) throws IOException {
+public class Main{
+    public static void main(String[] args) {
         FileHandler.loadUsers();
     }
 }
